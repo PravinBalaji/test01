@@ -24,7 +24,7 @@ pipeline{
 				
 				sh '''
 					docker build -t nginx/nodeapp_test:latest .
-					docker run -d --name nginx123 -p 8000:80 nginx/nodeapp_test:latest
+					docker run -d --name nginx1234 -p 8000:80 nginx/nodeapp_test:latest
 				'''
 			}
 		}

@@ -17,18 +17,7 @@ pipeline{
 				checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'd86de54a-8fbb-4506-b150-d18aecabbe73', url: 'https://github.com/PravinBalaji/test01.git']])
    		
 			}
-		}
-		stage('Stop and Remove Docker container') {
-                    steps {
-                        script {
-                            def containerId = sh(returnStdout: true, script: "docker ps -a | grep <container_name> | awk '{print $1}'").trim()
-                            if (containerId) {
-                                sh "docker stop ${containerId}"
-                                sh "docker rm ${containerId}"
-                            }
-                        }
-                    }
-                }			
+		}			
 		stage("build docker image"){
 		     	steps {
 				

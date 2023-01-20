@@ -17,7 +17,22 @@ pipeline{
 				checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'd86de54a-8fbb-4506-b150-d18aecabbe73', url: 'https://github.com/PravinBalaji/test01.git']])
    		
 			}
-		}			
+		}
+		stage ('Deploy to Docker') {
+                        steps {
+                            parallel (
+                                "instance1" : {
+                                    environment {
+                                        containerId = sh(script: "docker ps --quiet --filter name=${fullDockerImageName}", returnStdout: true).trim()
+                                    }
+                                    steps {
+                                        if (containerId.isEmpty()) {docker.image('some/image').run("--name ${fullDockerImageName}")
+                                        }
+                                    }
+                                 }
+                            )
+                        }
+                }
 		stage("build docker image"){
 		     	steps {
 				

@@ -18,7 +18,17 @@ pipeline{
    		
 			}
 		}
-					
+		stage('Stop and Remove Docker container') {
+                    steps {
+                        script {
+                            def containerId = sh(returnStdout: true, script: "docker ps -a | grep <container_name> | awk '{print $1}'").trim()
+                            if (containerId) {
+                                sh "docker stop ${containerId}"
+                                sh "docker rm ${containerId}"
+                            }
+                        }
+                    }
+                }			
 		stage("build docker image"){
 		     	steps {
 				

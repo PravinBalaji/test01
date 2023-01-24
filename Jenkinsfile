@@ -25,6 +25,7 @@ pipeline{
 				
 				sh '''
 					docker stop $(docker ps -a -q --filter="name=nginx1234")
+					docker rm $(docker ps -a -q --filter="name=nginx1234")
 				'''
 			}
 		}

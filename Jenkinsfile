@@ -14,7 +14,7 @@ pipeline{
 	
 		stage('Checkout') {
 			steps{
-				checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'd86de54a-8fbb-4506-b150-d18aecabbe73', url: 'https://github.com/PravinBalaji/test01.git']])
+				git branch: 'branch01', credentialsId: 'd86de54a-8fbb-4506-b150-d18aecabbe73', url: 'https://github.com/PravinBalaji/test01.git'
    		
 			}
 		}

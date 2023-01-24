@@ -24,8 +24,7 @@ pipeline{
 		     	steps {
 				
 				sh '''
-					docker stop nginx/nodeapp_test:latest 
-					docker rm nginx/nodeapp_test:latest
+					docker stop $(docker ps -a -q --filter="name=nginx1234")
 				'''
 			}
 		}

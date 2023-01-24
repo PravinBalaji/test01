@@ -18,6 +18,17 @@ pipeline{
    		
 			}
 		}
+		
+		
+	         stage("Removing the Existing Container"){
+		     	steps {
+				
+				sh '''
+					docker stop nginx/nodeapp_test:latest 
+					docker rm nginx/nodeapp_test:latest
+				'''
+			}
+		}
 
 		stage("build docker image"){
 		     	steps {
@@ -28,6 +39,7 @@ pipeline{
 				'''
 			}
 		}
+		
 
 		stage("docker container"){
 			steps {

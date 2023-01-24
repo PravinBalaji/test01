@@ -20,7 +20,7 @@ pipeline{
 		}
 		
 		
-	         stage("Removing the Existing Container"){
+	/*         stage("Removing the Existing Container"){
 		     	steps {
 				
 				sh '''
@@ -29,7 +29,7 @@ pipeline{
 				'''
 			}
 		}
-
+*/
 		stage("build docker image"){
 		     	steps {
 				
